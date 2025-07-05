@@ -81,7 +81,6 @@ const App = () => {
     ; (async () => {
       try {
         const response = await getUserData()
-        console.log(response.data);
 
         dispatch(userDataFromServer(response.data))
         setLoading(false)
