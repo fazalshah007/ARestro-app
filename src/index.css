@@ -131,7 +131,7 @@
   }
 
   .step-item {
-    @apply relative flex flex-col justify-center items-center w-36 @lg: w-44 @2xl: w-52 @3xl: w-64 @5xl: w-72 @7xl: w-96;
+    @apply relative flex flex-col justify-center items-center w-36 @lg:w-44 @2xl:w-52 @3xl:w-64 @5xl:w-72 @7xl:w-96;
           }
 
           .step-item:not(:first-child):before {
