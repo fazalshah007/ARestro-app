@@ -81,8 +81,9 @@ const App = () => {
     ; (async () => {
       try {
         const response = await getUserData()
+        console.log(response.data);
 
-        dispatch(userDataFromServer(response?.data))
+        dispatch(userDataFromServer(response.data))
         setLoading(false)
 
       } catch (error) {
@@ -92,7 +93,7 @@ const App = () => {
 
       }
     })()
-  }, [state?.isAuthUser])
+  }, [state.isAuthUser, state.accessToken])
 
 
   if (loading) {
