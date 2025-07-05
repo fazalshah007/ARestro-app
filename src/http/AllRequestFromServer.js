@@ -3,7 +3,7 @@ import store from "@/store/store";
 import { getRefreshToken } from "@/utils/RefreshTokenSet";
 import axios from "axios";
 const rootURL = "https://a-restro-api.vercel.app/api/v1" // for production URL
-// const rootURL = "http://localhost:5000/api/v1" for development URL
+// const rootURL = "http://localhost:5000/api/v1" //for development URL
 
 // ------------ defalut instance ----------------------
 const instance = axios.create({
