@@ -1,4 +1,4 @@
-import {  Navigate, Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import ProtectedRoute from "./routes/ProtectedRoute"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -8,35 +8,35 @@ import { fetchedAllProducts } from "./store/ProductSlice/ProductSlice"
 import SpinnerDemo from "./components/customized/spinner/spinner-01"
 import { toast } from "react-toastify"
 import {
-    LoginForm,
-    SignupForm,
+  LoginForm,
+  SignupForm,
 
-    AuthLayouts,
-    MainLayout,
+  AuthLayouts,
+  MainLayout,
 
-    Home,
-    Orders,
-    Cart,
-    Account,
-    AllProducts,
-    SingleProduct,
+  Home,
+  Orders,
+  Cart,
+  Account,
+  AllProducts,
+  SingleProduct,
 
-    Dashboard,
-    CheckOut,
-    NotFound,
-    DashboardStats,
-    DashboardProductTable,
+  Dashboard,
+  CheckOut,
+  NotFound,
+  DashboardStats,
+  DashboardProductTable,
 
-    ContactTable,
-    ViewMessage,
+  ContactTable,
+  ViewMessage,
 
-    AllUsers,
+  AllUsers,
 
-    ViewAllOrders,
-    ViewSingleOrder,
+  ViewAllOrders,
+  ViewSingleOrder,
 
-    CreateProduct,
-    EditProduct
+  CreateProduct,
+  EditProduct
 } from "./pages"
 
 
@@ -47,9 +47,10 @@ const App = () => {
   const state = useSelector(state => state.AuthSlice)
   const stateProduct = useSelector(state => state.productSlice)
   const dispatch = useDispatch()
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
-    
+
     ; (async () => {
       try {
 
@@ -58,7 +59,7 @@ const App = () => {
 
 
       } catch (error) {
-        toast.error(`${error?.response?.data?.message || error?.message == "Network Error" ? "Server Connection Error" : error?.message }`, {
+        toast.error(`${error?.response?.data?.message || error?.message == "Network Error" ? "Server Connection Error" : error?.message}`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -79,14 +80,15 @@ const App = () => {
 
 
     ; (async () => {
+      if (hasFetched || !state?.isAuthUser) return;
       try {
         const response = await getUserData()
 
         dispatch(userDataFromServer(response?.data))
         setLoading(false)
-
+        setHasFetched(true);
       } catch (error) {
-
+        setHasFetched(true);
         setLoading(false)
         // console.log(error.response.data.message);
 
