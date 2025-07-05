@@ -2,8 +2,8 @@ import { loginUser, logOutUser } from "@/store/AuthSlice/AuthSlice";
 import store from "@/store/store";
 import { getRefreshToken } from "@/utils/RefreshTokenSet";
 import axios from "axios";
-const rootURL = "https://arestro-api-production.up.railway.app/api/v1"
-// const rootURL = "http://localhost:5000/api/v1"
+const rootURL = "https://a-restro-api.vercel.app/api/v1" // for production URL
+// const rootURL = "http://localhost:5000/api/v1" for development URL
 
 // ------------ defalut instance ----------------------
 const instance = axios.create({
@@ -79,7 +79,26 @@ export const loggedOutUser = async () => {
   return user
 }
 
-// -------------------------------------------------------------------------------------------------------------
+// ----------------------------------SEND MESSAGE HANDLERS ------------------------------------------------
+export const sendMessage = async (data) => { 
+   const message = await axios.post(`${rootURL}/send-message`, data);
+   return message;
+ }
+
+export const getAllMessages = async () => {
+  const allMessages = await instance.get("/all-messages");
+  return allMessages;
+}
+
+export const getSingleMessage = async (id) => {
+  const singleMessage = await instance.get(`/view-message/${id}`);
+  return singleMessage;
+}
+
+export const deleteMessage = async (id) => {
+  const deleteMessage = await instance.delete(`/delete-contact/${id}`);
+  return deleteMessage;
+}
 
 // ------------------------- ORDERS ----------------------------------------------------
 

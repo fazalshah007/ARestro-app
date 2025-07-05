@@ -120,7 +120,7 @@ const Navbar = () => {
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild className="text-lg @4xl:text-xl font-semibold">
-                                        <Link>Contact</Link>
+                                        <a href="#contact">Contact</a>
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
                             </NavigationMenuList>

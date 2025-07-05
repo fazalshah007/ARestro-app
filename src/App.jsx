@@ -27,6 +27,9 @@ import {
     DashboardStats,
     DashboardProductTable,
 
+    ContactTable,
+    ViewMessage,
+
     AllUsers,
 
     ViewAllOrders,
@@ -55,7 +58,7 @@ const App = () => {
 
 
       } catch (error) {
-        toast.error(`${error?.response?.data?.message || error?.message }`, {
+        toast.error(`${error?.response?.data?.message || error?.message == "Network Error" ? "Server Connection Error" : error?.message }`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -118,6 +121,8 @@ const App = () => {
             <Route path="users" element={<AllUsers />} />
             <Route path="orders" element={<ViewAllOrders />} />
             <Route path="view-order/:id" element={<ViewSingleOrder />} />
+            <Route path="contacts" element={<ContactTable />} />
+            <Route path="view-message/:id" element={<ViewMessage />} />
           </Route>
 
         </Route>

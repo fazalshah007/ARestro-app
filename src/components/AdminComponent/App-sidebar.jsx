@@ -1,4 +1,4 @@
-import {  Home, Settings, Users, ShoppingCart, Store } from "lucide-react"
+import {  Home, Contact, Users, ShoppingCart, Store } from "lucide-react"
 import logo from "@/assets/images/logo.png"
 
 import {
@@ -35,6 +35,11 @@ const navigationItems = [
     title: "Orders",
     url: "/admin/orders",
     icon: ShoppingCart,
+  },
+  {
+    title: "Contacts",
+    url: "/admin/contacts",
+    icon: Contact,
   },
 ]
 

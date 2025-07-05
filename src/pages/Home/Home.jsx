@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge"
 import AllProducts from "../Products/AllProducts"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
+import { ContactEmail } from "../index"
 
 
 const Home = ({ products }) => {
@@ -117,6 +118,9 @@ const Home = ({ products }) => {
                   <Button className="h-full rounded-none bg-astro-green text-white hover:bg-astro-light">Subscribe</Button>
                 </div>
 
+                </div>
+                <div id="contact">
+                  <ContactEmail />
                 </div>
                 {/* footer section  */}
 

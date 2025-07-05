@@ -18,6 +18,9 @@ import CreateProduct from "./Admin/CreateProduct/CreateProduct";
 import EditProduct from "./Admin/EditProduct/EditProduct"
 import ViewAllOrders from "./Admin/Orders/ViewAllOrders";
 import ViewSingleOrder from "./Admin/ViewSingleOrder/ViewSingleOrder";
+import ContactEmail from "./Contact/ContactEmail";
+import ContactTable from "./Admin/Contacts/ContactTable";
+import ViewMessage from "./Contact/ViewMessage";
 
 
 export {
@@ -28,6 +31,7 @@ export {
     MainLayout,
 
     Home,
+    ContactEmail,
     Orders,
     Cart,
     Account,
@@ -39,6 +43,9 @@ export {
     DashboardStats,
     CreateProduct,
     EditProduct,
+
+    ContactTable,
+    ViewMessage,
 
     ViewAllOrders,
     ViewSingleOrder,
