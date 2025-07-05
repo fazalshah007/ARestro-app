@@ -7,7 +7,7 @@ const rootURL = "https://a-restro-api.vercel.app/api/v1" // for production URL
 
 // ------------ defalut instance ----------------------
 const instance = axios.create({
-    baseURL: rootURL,
+  baseURL: rootURL,
 })
 
 // ------------------------ ALL INTERCEPTORS HANDLER ---------------------------------
@@ -15,7 +15,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const state = store.getState()
   const token = state.AuthSlice.accessToken;
-  if(token){
+  if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
   return config;
@@ -33,6 +33,10 @@ instance.interceptors.response.use(
       try {
         // const refreshToken = localStorage.getItem("refreshToken");
         const refreshToken = getRefreshToken()
+        if (!refreshToken) {
+          store.dispatch(logOutUser());
+          return Promise.reject(error); 
+        }
         const res = await axios.post(`${rootURL}/refresh`, { refreshToken });
 
         // ✅ Update token in Redux
@@ -60,7 +64,7 @@ export const getUserData = async () => {
     return user
   } catch (error) {
     console.log(error);
-    
+
   }
 }
 
@@ -80,10 +84,10 @@ export const loggedOutUser = async () => {
 }
 
 // ----------------------------------SEND MESSAGE HANDLERS ------------------------------------------------
-export const sendMessage = async (data) => { 
-   const message = await axios.post(`${rootURL}/send-message`, data);
-   return message;
- }
+export const sendMessage = async (data) => {
+  const message = await axios.post(`${rootURL}/send-message`, data);
+  return message;
+}
 
 export const getAllMessages = async () => {
   const allMessages = await instance.get("/all-messages");
@@ -139,12 +143,12 @@ export const getOrderStatSales = async () => {
 export const getAllProducts = async (category = null, page = 0) => {
 
   let allProducts;
-  if(category || page){
+  if (category || page) {
     allProducts = await axios.get(`${rootURL}/products?category=${category}&page=${page}`)
-  }else {
+  } else {
     allProducts = await axios.get(`${rootURL}/products`)
   }
-  
+
   return allProducts;
 }
 
@@ -180,14 +184,14 @@ export const deleteProduct = async (id) => {
 
 // ----------------- LOGIN or REGISTER USER -------------------
 
-export const loginWithEmailAndPassword = async (data) => { 
-  
-   const user = await axios.post(`${rootURL}/login`, data);
-   return user
- }
+export const loginWithEmailAndPassword = async (data) => {
 
-export const registerWithEmailAndPassword = async (data) => { 
-  
-   const user = await axios.post(`${rootURL}/register`, data);
-   return user
- }
+  const user = await axios.post(`${rootURL}/login`, data);
+  return user
+}
+
+export const registerWithEmailAndPassword = async (data) => {
+
+  const user = await axios.post(`${rootURL}/register`, data);
+  return user
+}
